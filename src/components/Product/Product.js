@@ -1,11 +1,15 @@
 import React from 'react';
+import { addToDb, removeFromDb } from '../../utilities/storage';
 
 const Product = (props) => {
     const {id,name,image,price} = props.product;
 
     const addToCart = (id) => {
-        console.log(id);
-        localStorage.setItem(id, 1)
+        addToDb(id);
+    }
+
+    const removeFromCart = (id) => {
+        removeFromDb(id);
     }
 
     return (
@@ -17,7 +21,8 @@ const Product = (props) => {
                 <p>Price : ${price}</p>
                 <div className="card-actions justify-end">
                 <button onClick={() => addToCart(id)} className="btn btn-primary">Add to Cart</button>
-                </div>
+                <button onClick={() => removeFromCart(id)} className="btn btn-primary">Remove</button>
+                </div>          
             </div>
             </div>
         </div>
